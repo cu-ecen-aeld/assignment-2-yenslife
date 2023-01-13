@@ -1,6 +1,7 @@
 #!/bin/sh
 
-if [ ! $# -eq 2 ]; then
+if [ $# -ne 2 ]
+then
 	echo "the arguments above were not specified"
 	exit 1
 fi
@@ -8,12 +9,16 @@ fi
 writefile=$1
 writestr=$2
 
-#echo "a. $writefile b. $writestr"
+#touch $1 this will fail because we may create a file with directories
 
-touch $1
-echo $writestr > $writefile
+mkdir -p `dirname $writefile`
+touch $writefile
 
-if [ ! -e $writefile ]; then
+if [ $? -eq 1 ]
+then
 	echo "create file error"
 	exit 1
 fi
+
+echo $writestr > $writefile
+
