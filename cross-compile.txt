@@ -1,0 +1,4 @@
+Using built-in specs.
+COLLECT_GCC=aarch64-none-elf-gcc
+COLLECT_LTO_WRAPPER=/home/mac/gcc-arm-10.2-2020.11-aarch64-aarch64-none-elf/bin/../libexec/gcc/aarch64-none-elf/10.2.1/lto-wrapper
+
