@@ -1,4 +1,4 @@
-// badic utility
+// basic utility
 #include<stdio.h>
 #include<string.h>
 //#include<errno.h>
@@ -17,8 +17,11 @@
 void my_write(const char* writefile, char* writestr){
 	// set file descriptor
 	int fd = open( writefile, O_WRONLY | O_CREAT, 0777);
+	if (fd < 0) {
+		perror("open() error");
+		return;
+	}
 	write(fd, writestr, strlen(writestr));
-	
 	close(fd);
 }
 
@@ -31,7 +34,8 @@ int main (int argc, char *argv[]) {
 		return 1;
 	} else {
 		my_write(argv[1], argv[2]);
+		syslog(LOG_DEBUG, "Writing %s to %s", argv[2], argv[1]);
 	}
-	printf("test: end process successfully");
+	printf("test: end process successfully!\n");
 	return 0;
 }
